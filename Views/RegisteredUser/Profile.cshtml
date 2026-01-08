@@ -1,0 +1,54 @@
+﻿@model GreenTogetheR.Models.RegisteredUser
+@{
+    Layout = "~/Views/RegisteredUser/_UserLayout.cshtml";
+}
+
+<div class="container mt-5">
+    <h2 class="text-success mb-4"><i class="fas fa-user-circle"></i> My Profile</h2>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <form asp-action="Profile" method="post">
+        <input type="hidden" asp-for="UserId" />
+
+        <div class="mb-3">
+            <label asp-for="FullName" class="form-label">Full Name</label>
+            <input asp-for="FullName" class="form-control" placeholder="Enter your full name" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="UserName" class="form-label">Username</label>
+            <input asp-for="UserName" class="form-control" placeholder="Enter your username" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Email" class="form-label">Email</label>
+            <input asp-for="Email" type="email" class="form-control" placeholder="Enter your email" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Password" class="form-label">Password</label>
+            <input asp-for="Password" type="password" class="form-control" placeholder="Enter new password" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Address" class="form-label">Address</label>
+            <input asp-for="Address" class="form-control" placeholder="Enter your address" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="CityName" class="form-label">City</label>
+            <input asp-for="CityName" class="form-control" placeholder="Enter your city" />
+        </div>
+
+        <button type="submit" class="btn-green">
+            <i class="fas fa-save"></i> Save Changes
+        </button>
+    </form>
+</div>

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<GreenTogetheR.Models.PointEarned>
+@{
+    Layout = "~/Views/RegisteredUser/_UserLayout.cshtml";
+    ViewData["Title"] = "Point Summary";
+}
+
+<div class="container mt-5 mb-5">
+    <h2 class="text-center text-success mb-4">Your Points Summary</h2>
+
+    <div class="card shadow-sm p-4 mb-4 text-center">
+        <h4 class="text-primary mb-2">Total Points: <strong>@ViewBag.TotalPoints</strong></h4>
+        <p>
+            Your current title:
+            <span class="badge bg-success fs-6">@ViewBag.UserTilte</span>
+        </p>
+    </div>
+
+    <h5 class="text-secondary mb-3">Points History</h5>
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-success">
+            <tr>
+                <th>Date</th>
+                <th>Action Type</th>
+                <th>Points Earned</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.DateEarned.ToString("yyyy-MM-dd HH:mm")</td>
+                        <td>@item.ActionType</td>
+                        <td>@item.PointsEarned</td>
+
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4" class="text-center text-muted">No points earned yet.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

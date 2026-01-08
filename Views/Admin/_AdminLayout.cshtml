@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - GreenTogether Admin</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.css" />
+    <link rel="stylesheet" href="~/lib/datatables/css/jquery.dataTables.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    @RenderSection("Styles", required: false)
+</head>
+
+<body style="background-color:#E8F5E9; min-height:100vh; display:flex; flex-direction:column;">
+
+    
+    <header class="navbar navbar-expand-lg navbar-light shadow-sm" style="background-color:#2e7d32;">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white fw-bold d-flex align-items-center" href="/Admin/Index">
+                <img src="~/images/GreenTogetherLogo.jpg" alt="Logo" style="height:45px; width:45px; border-radius:50%; margin-right:10px;" />
+                GreenTogether <span class="fw-light ms-1">Admin</span>
+            </a>
+            <div class="ms-auto">
+                <a asp-controller="Admin" asp-action="Logout" class="btn btn-outline-light btn-sm">
+                    <i class="fas fa-sign-out-alt me-1"></i> Logout
+                </a>
+            </div>
+        </div>
+    </header>
+
+    
+    <div class="d-flex flex-grow-1" style="min-height: 85vh;">
+
+       
+        <nav class="d-flex flex-column p-3 border-end shadow-sm"
+             style="width:250px; background-color:#C8E6C9;">
+            <h6 class="text-success fw-bold mb-3"><i class="fas fa-leaf me-2"></i>Admin Panel</h6>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item mb-2">
+                    <a href="/Admin/AdminAwarenessArticles/Index" class="nav-link text-dark">
+                        <i class="fas fa-newspaper me-2 text-success"></i> Awareness Articles
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a href="/Admin/AdminRecylingCenters/Index" class="nav-link text-dark">
+                        <i class="fas fa-recycle me-2 text-success"></i> Recycling Centers
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a href="/Admin/AdminWasteSchedules/Index" class="nav-link text-dark">
+                        <i class="fas fa-calendar-alt me-2 text-success"></i> Waste Schedules
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a href="/Admin/AdminRegisteredUsers/Index" class="nav-link text-dark">
+                        <i class="fas fa-users me-2 text-success"></i> Registered Users
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a href="/Admin/AdminIllegalDumpReports/Index" class="nav-link text-dark">
+                        <i class="fas fa-exclamation-triangle me-2 text-success"></i> Illegal Reports
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        
+        <main class="flex-grow-1 p-4">
+            @RenderBody()
+        </main>
+    </div>
+
+    
+    <footer class="footer text-center text-muted py-2" style="background-color:#F0FFF0; color:#2e7d32;">
+        <div class="container">
+            &copy; 2025 - <strong>GreenTogether</strong> Admin Panel 🌱
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

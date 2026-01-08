@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - GreenTogether</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/datatables/css/jquery.dataTables.css" />
+    <link rel="stylesheet" href="~/lib/jquery/dist/jquery.min.js" />
+    <link rel="stylesheet" href="~/css/custom.css" />
+    <link rel="stylesheet" href="~/css/site.css"  />
+    <link rel="stylesheet" href="~/GreenTogether.styles.css"  />
+    @RenderSection("Styles", required: false)
+
+   
+</head>
+<body style="background-color:#D8E4BC">
+    <header>
+        
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow py-0" style="background-color:#F0FFF0; margin-bottom: 5px;">
+                <div class="container-fluid">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                        <img src="~/images/GreenTogetherLogo.jpg" alt="GreenTogether Logo" style="height:50px; width:50px; border-radius:50%; margin:0;" />
+                        <strong style="color:#2e7d32; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">GreenTogether</strong>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                
+                                <a class="btn-green nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                               
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn-green nav-link" asp-area="" asp-controller="RegisteredUser" asp-action="login">login</a>
+                                
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </nav>
+        
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer bg-light border-top text-center text-muted py-1" style="background-color:#F0FFF0;">
+        <div class="container">
+            &copy; 2025 - <strong>GreenTogether</strong> – Let's build a Cleaner Future 
+            
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+   @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

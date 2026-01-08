@@ -1,0 +1,44 @@
+﻿@model GreenTogetheR.Models.RegisteredUser
+@{
+    ViewData["Title"] = "SignUp Page";
+}
+<div class="container mt-4">
+    <h2 class="text-success mb-4">Create New Account</h2>
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert alert-success">@ViewBag.Message</div>
+    }
+
+    <form asp-action="SignUp" method="post" enctype="multipart/form-data">
+        <div class="form-group mb-3">
+            <label class="form-label">Full Name</label>
+            <input type="text" name="FullName" class="form-control" placeholder="Enter your full name" required />
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Email" class="form-label">Email address</label>
+            <input asp-for="Email" class="form-control" />
+        </div>
+
+        <div class="form-group mb-3">
+            <label>Address</label>
+            <input type="text" name="Address" class="form-control" />
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="CityName" class="form-label">Your City</label>
+            <input asp-for="CityName" class="form-control" />
+        </div>
+        <div class="form-group mb-4">
+            <label asp-for="UserName" class="form-label">User Name</label>
+            <input type="text" name="UserName" class="form-control" />
+        </div>
+        <div class="form-group mb-3">
+            <label>Password</label>
+            <input type="password" asp-for="Password" class="form-control" />
+
+        </div>
+
+        <button type="submit" class="btn-green">Submit Report</button>
+    </form>
+</div>

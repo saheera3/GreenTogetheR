@@ -1,0 +1,45 @@
+﻿@model GreenTogetheR.Models.RegisteredUser
+@{
+    Layout = "_UserLayout";
+    ViewData["Title"] = "User Dashboard";
+}
+<div class="container mt-5 text-center">
+    <h2 class="text-success"> Welcome @Model.FullName</h2>
+    <h5 class="text-muted"> Your Title:<strong>@Model.Title</strong></h5>
+    <div class="row mt-5">
+        <!-- Important Cards -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm h-100">
+                <img src="~/images/dumping.jpg" class="card-img-top" alt="Illegal Dumping">
+                <div class="card-body">
+                    <h5 class="card-title">Report Illegal Dumping</h5>
+                    <p class="card-text">Help to keep your community clean! reporting illegal dumping sites.</p>
+                    <a asp-controller="IllegalDumbReport" asp-action="Index" class="btn-green">Report Now</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm h-100">
+                <img src="~/images/schedule.jpg" class="card-img-top" alt="Waste Schedule">
+                <div class="card-body">
+                    <h5 class="card-title">View Collection Schedule</h5>
+                    <p class="card-text">Know when waste will be collected in your area.</p>
+                    <a asp-controller="WasteSchedule" asp-action="Index" class="btn-green">View Schedule</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm h-100">
+                <img src="~/images/recycle.jpg" class="card-img-top" alt="Recycling Center">
+                <div class="card-body">
+                    <h5 class="card-title">Nearby Recycling Centers</h5>
+                    <p class="card-text">Find the closest places to recycle your waste.</p>
+                    <a asp-controller="RecyclingCenter" asp-action="Index" class="btn-green">Find Centers</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

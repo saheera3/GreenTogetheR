@@ -1,0 +1,49 @@
+﻿@model GreenTogetheR.Models.IllegalDumpReport
+@{
+    // Check if user is logged in via session
+    var userId = Context.Session.GetInt32("UserId");
+    // Dynamically select layout
+    Layout = userId != null ? "~/Views/RegisteredUser/_UserLayout.cshtml" : "~/Views/Shared/_Layout.cshtml";
+
+    ViewData["Title"] = "Report Illegal Dumping";
+}
+<div class="container mt-4">
+    <h2 class="text-success mb-4">Report Illegal Dumping</h2>
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert alert-success">@ViewBag.Message</div>
+    }
+
+    <form asp-action="Index" method="post" enctype="multipart/form-data">
+        <div class="form-group mb-3">
+            <label class="form-label">City Name</label>
+            <input type="text" name="CityName" class="form-control" placeholder="Enter the city where saw the illegal dumping" required />
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Description" class="form-label">Describe what you see *</label>
+            <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+        </div>
+
+        <div class="form-group mb-3">
+            <label>Upload Photo (optional)</label>
+            <input type="file" name="Photo" class="form-control" accept="image/*" />
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="ReporterName" class="form-label">Your Name (optional)</label>
+            <input asp-for="ReporterName" class="form-control" />
+        </div>
+        <div class="form-group mb-4">
+            <label asp-for="Location" class="form-label">Give exact Location</label>
+            <input type="text" name="Location" class="form-control" placeholder="Copy paste the map address" />
+        </div>
+        <div class="form-group mb-3">
+            <label>Report Date</label>
+            <input type="date" asp-for="ReportDate" class="form-control"  />
+
+        </div>
+
+        <button type="submit" class="btn-green">Submit Report</button>
+    </form>
+</div>

@@ -1,0 +1,66 @@
+﻿@model IEnumerable<GreenTogetheR.Models.WasteSchedule>
+@{
+    Layout = "~/Views/RegisteredUser/_UserLayout.cshtml";
+    ViewData["Title"] = "Waste Collection Schedule";
+}
+<div class="container mt-5 mb-5">
+    @if(TempData["RecycleMessage"]!= null)
+    {
+        <div class="alert alert-success text-center fw-bold">@TempData["RecycleMessage"]</div>
+    }
+
+    <div class="card shadow-sm p-4 mb-4 text-center">
+        <h4 class="text-primary mb-2">Today: @ViewBag.TodayDate (@ViewBag.TodayDay)</h4>
+        <p class="fs-5">
+            Waste collection today in your area:
+            <strong>@ViewBag.TodaySchedule</strong>
+        </p>
+        @if(ViewBag.TodaySchedule != "No Waste collection today")
+        {
+            <form asp-action="RecycleConfirm" method="post" enctype="multipart/form-data" class="mt-3">
+                <div class="mb-3">
+                    <label class="form-label">Upload a photo proof of your recycle</label>
+                    <input type="file" name="Photo" class="form-control" accept="image/*" required />
+                </div>
+                <button type="submit" id="recycleBtn" class="btn-green" 
+                         @(ViewBag.HasRecycledToday ? "disabled":"")>
+                         <i class="fa-solid fa-recycle"></i>
+                         @(ViewBag.HasRecycledToday ? "Aready Recycled" : "I Recycled Today")
+                     </button>
+            </form>
+            
+
+        }
+    </div>
+
+    <h2 class="text-center text-success mb-4">Full Waste Collection Schedule</h2>
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-success">
+            <tr>
+                <th>Collection Day</th>
+                <th>Waste Type</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.CollectionDay</td>
+                        <td>@item.WasteType</td>
+                       
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="3" class="text-center text-muted">No waste collection schedule available for your city.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

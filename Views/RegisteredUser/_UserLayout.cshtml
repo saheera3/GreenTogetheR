@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - GreenTogether</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.css" />
+    <link rel="stylesheet" href="~/lib/datatables/css/jquery.dataTables.css" />
+    <link rel="stylesheet" href="~/css/site.css"/>
+    @RenderSection("Styles", required: false)
+
+</head>
+<body style="background-color:#D8E4BC; display:flex; flex-direction:column; min-height:100vh;">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow py-0 w-100" style="background-color:#F0FFF0; margin-bottom: 5px; padding:0;">
+            <div class="container-fluid">
+               <a class="navbar-brand d-flex align-items-center" href="#">
+                  <img src="~/images/GreenTogetherLogo.jpg" alt="GreenTogether Logo" style="height:50px; width:50px; border-radius:50%; margin-right:10px;" />
+                  <strong style="color:#2e7d32; font-family: 'Lucida Sans', sans-serif; font-size: 1.5rem;">
+                         GreenTogether
+                  </strong>
+               </a>
+
+             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-center">
+                    <!-- Dropdown Menu -->
+                    <li class="nav-item dropdown me-3">
+                        <a class="nav-link dropdown-toggle text-dark" href="#" id="menuDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-bars"></i> Menu
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="menuDropdown">
+                                <li><a class="dropdown-item" asp-controller="IllegalDumbReport" asp-action="Index"><i class="fas fa-trash-alt me-2 text-success"></i>Report Illegal Dumping</a></li>
+                                <li><a class="dropdown-item" asp-controller="RecyclingCenter" asp-action="Index"><i class="fas fa-recycle me-2 text-success"></i>Nearby Recycling Center</a></li>
+                           <li><a class="dropdown-item" asp-controller="WasteSchedule" asp-action="index"><i class="fas fa-calendar-alt me-2 text-success"></i>Check Waste Schedule</a></li>
+                                <li><a class="dropdown-item" asp-controller="PointEarned" asp-action="Index"><i class="fas fa-star me-2 text-success"></i>Points History</a></li>
+                        </ul>
+                    </li>
+
+                     <!-- User Dropdown -->
+                     <li class="nav-item dropdown">
+                         <a class="nav-link dropdown-toggle text-dark" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user-circle fa-lg"></i>
+                         </a>
+                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" asp-controller="RegisteredUser" asp-action="Profile"><i class="fas fa-user me-2 text-success"></i>View Profile</a></li>
+                            <li><a class="dropdown-item" asp-controller="RegisteredUser" asp-action="UserDashboard"><i class="fas fa-home me-2 text-success"></i>Dashboard</a></li>
+                            <li><a class="dropdown-item" asp-controller="RegisteredUser" asp-action="Logout"><i class="fas fa-sign-out-alt me-2 text-danger"></i>Logout</a></li>
+                         </ul>
+                     </li>
+                </ul>
+             </div>
+            </div>
+        </nav>
+
+    </header>
+    <div class="container flex-grow-1">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer text-center text-muted py-2" style="background-color:#F0FFF0; color:#2e7d32;">
+        <div class="container">
+            &copy; 2025 - <strong>GreenTogether</strong> – Let's build a Cleaner Future 
+            
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

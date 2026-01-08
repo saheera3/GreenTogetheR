@@ -1,0 +1,81 @@
+﻿@model IEnumerable<GreenTogetheR.Models.RecylingCenter>
+    
+@{
+    Layout = "~/Views/RegisteredUser/_UserLayout.cshtml";
+    ViewData["Title"] = "Recycling Centers";
+}
+<div class="container mt-4">
+    <h2 class="text-center mb-4">
+        <i class="fa-solid fa-recycle text-success"></i> Recycling Centers
+    </h2>
+
+    <!-- City Selection Form -->
+    <form method="get" asp-action="Index" class="text-center mb-4">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <select class="form-select" name="cityId">
+                    <option value="">-- Select City --</option>
+                    @foreach (var city in ViewBag.Cities)
+                    {
+                        <option value="@city.CityId" selected="@(ViewBag.SelectedCityId == city.CityId ? "selected" : null)">
+                            @city.CityName
+                        </option>
+                    }
+                </select>
+                <button type="submit" class="btn-green">
+                    <i class="fa-solid fa-magnifying-glass"></i> Search
+                </button>
+            </div>
+
+        </div>
+    </form>
+
+    <!-- Recycling Centers List -->
+    @if (Model != null && Model.Any())
+    {
+        <div class="row">
+            @foreach (var center in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm border-0 h-100">
+                        <div class="card-body">
+                            <h5 class="card-title text-success">
+                                <i class="fa-solid fa-building"></i> @center.CenterName
+                            </h5>
+                            <p class="card-text mb-1">
+                                <i class="fa-solid fa-location-dot text-danger"></i>
+                                <strong>Address:</strong> @center.CenterAddress
+                            </p>
+                            <p class="card-text mb-3">
+                                <i class="fa-solid fa-phone text-primary"></i>
+                                <strong>Contact:</strong> @center.ContactInfo
+                            </p>
+
+                            @* If address is a Google Maps link, make it clickable *@
+                            @if (center.CenterAddress.Contains("maps.google"))
+                            {
+                                <a href="@center.CenterAddress" target="_blank" class="btn btn-outline-success btn-sm">
+                                    <i class="fa-solid fa-map-location-dot"></i> View on Map
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="https://www.google.com/maps/search/?api=1&query=@center.CenterAddress"
+                                   target="_blank" class="btn btn-outline-success btn-sm">
+                                    <i class="fa-solid fa-map-location-dot"></i> View on Map
+                                </a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="text-center text-muted mt-5">
+            <i class="fa-solid fa-circle-exclamation fa-2x"></i>
+            <p class="mt-2">No recycling centers found for the selected city.</p>
+        </div>
+    }
+</div>

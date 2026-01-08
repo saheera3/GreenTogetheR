@@ -1,0 +1,81 @@
+﻿@model IEnumerable<GreenTogetheR.Models.AwarenessArticles>
+
+@{
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+    ViewData["Title"] = "Index";
+}
+
+<div class="container mt-4">
+    <div class="card shadow border-0">
+        <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">
+                <i class="fas fa-newspaper me-2"></i> Awareness Articles
+            </h4>
+            <a asp-action="Create" class="btn btn-light btn-sm">
+                <i class="fas fa-plus-circle"></i> Create New
+            </a>
+        </div>
+
+        <div class="card-body">
+            @if (Model == null || !Model.Any())
+            {
+                <div class="text-center text-muted py-5">
+                    <i class="fas fa-info-circle fa-2x mb-3"></i>
+                    <h5>No awareness articles found.</h5>
+                </div>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead class="table-success">
+                            <tr>
+                                <th>@Html.DisplayNameFor(model => model.ArticleTitle)</th>
+                                <th>@Html.DisplayNameFor(model => model.ArticleDescription)</th>
+                                <th>@Html.DisplayNameFor(model => model.FileUrl)</th>
+                                <th style="width:160px;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.ArticleTitle</td>
+                                    <td class="text-truncate" style="max-width: 250px;">@item.ArticleDescription</td>
+                                    <td>
+                                        @if (!string.IsNullOrEmpty(item.FileUrl))
+                                        {
+                                            <a href="@item.FileUrl" target="_blank" class="text-decoration-none">
+                                                <i class="fas fa-link text-success"></i> View File
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted">No File</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        <a asp-action="Edit" asp-route-id="@item.ArticleId"
+                                           class="btn btn-outline-primary btn-sm me-1" title="Edit">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a asp-action="Details" asp-route-id="@item.ArticleId"
+                                           class="btn btn-outline-info btn-sm me-1" title="Details">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                        <a asp-action="Delete" asp-route-id="@item.ArticleId"
+                                           class="btn btn-outline-danger btn-sm" title="Delete">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
